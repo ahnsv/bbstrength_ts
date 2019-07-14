@@ -1,22 +1,23 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import About from './components/About';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import Journal from "./view/journal";
+import { WorkoutDay } from "./model/workout";
+import { WorkoutProgram } from "./model/program";
 
-/**
- * TODO
- * 1. serve this with html
- * 2. use styled component
- * 3. testing
- * @constructor
- */
 const Home: React.FunctionComponent = () => {
-    const hello = ' hello';
+    const today: WorkoutDay = {
+        date: new Date(),
+        focus: "BICEPS",
+    };
+    const dailyProgram: WorkoutProgram = {
+        type: "bodybuilding",
+        name: "10X10",
+    };
     return (
         <div className={`home`}>
-            {hello}
-            <About age={`24`} name={`STA`} />
+            <Journal day={today} program={dailyProgram} />
         </div>
     );
 };
 
-ReactDOM.render(<Home />, document.getElementById('app'));
+ReactDOM.render(<Home />, document.getElementById("app"));

@@ -1,45 +1,53 @@
-import typescript from 'rollup-plugin-typescript2';
-import serve from 'rollup-plugin-serve';
-import livereload from 'rollup-plugin-livereload';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import replace from 'rollup-plugin-replace';
-import commonjs from 'rollup-plugin-commonjs';
-import postcss from 'rollup-plugin-postcss';
+import typescript from "rollup-plugin-typescript2";
+import serve from "rollup-plugin-serve";
+import livereload from "rollup-plugin-livereload";
+import nodeResolve from "rollup-plugin-node-resolve";
+import replace from "rollup-plugin-replace";
+import commonjs from "rollup-plugin-commonjs";
+import postcss from "rollup-plugin-postcss";
 
-const DEV = 'development';
-const PROD = 'production';
+const DEV = "development";
+const PROD = "production";
 const nodeEnv = process.env.NODE_ENV;
 
 export default {
-    input: 'src/index.tsx',
+    input: "src/index.tsx",
     output: {
-        file: 'public/bundle.js',
-        format: 'iife',
+        file: "public/bundle.js",
+        format: "iife",
     },
     plugins: [
         typescript(),
         replace({
-            'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+            "process.env.NODE_ENV": JSON.stringify(nodeEnv),
         }),
         commonjs({
-            include: 'node_modules/**',
+            include: "node_modules/**",
             namedExports: {
-                'node_modules/react-dom/index.js': ['render'],
-                'node_modules/react/index.js': ['Component', 'PropTypes', 'createElement'],
+                "node_modules/react-dom/index.js": ["render"],
+                "node_modules/react-is/index.js": ["isElement"],
+                "node_modules/react/index.js": [
+                    "Component",
+                    "PropTypes",
+                    "createElement",
+                    "useState",
+                    "useEffect",
+                    "cloneElement",
+                ],
             },
         }),
         postcss({
-            extensions: ['.css', '.scss'],
+            extensions: [".css", ".scss"],
         }),
         serve({
             open: true,
             port: 3000,
-            contentBase: 'public',
+            contentBase: "public",
             historyApiFallback: true,
         }),
         nodeResolve(),
         livereload({
-            watch: 'public',
+            watch: "public",
         }),
     ],
 };

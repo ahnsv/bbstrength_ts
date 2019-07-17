@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import "./autocomplete.scss";
 
 export interface AutoCompleteProps {
     suggestions: string[];
     idProp?: string;
 }
-const Input = styled.input`
-    border: none;
-    height: 1.3rem;
-    font-size: 1.2rem;
-    padding-left: 0.1rem;
-    :focus {
-        outline: none;
-    }
-`;
 const AutoComplete: React.FC<AutoCompleteProps> = (props: AutoCompleteProps) => {
     const [currVal, setCurrVal] = useState<string>("");
     const [matched, setMatched] = useState<any[]>([]);
@@ -27,7 +18,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props: AutoCompleteProps) => 
     }, [currVal]);
     return (
         <div className="autocomplete">
-            <Input
+            <input
                 type="text"
                 id={props.idProp}
                 onKeyUp={(e: React.FormEvent<HTMLInputElement>) => {

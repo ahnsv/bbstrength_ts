@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { WorkoutDay } from "../model/workout";
 import { WorkoutProgram } from "../model/program";
-import AutoComplete from "../components/autocomplete";
+import AutoComplete from "../components/Autocomplete/autocomplete";
 /**
  * @name journal.tsx
  * @description keep daily journal

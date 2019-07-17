@@ -1,0 +1,19 @@
+.autocomplete {
+    input {
+        border: none;
+        height: 2rem;
+        background-color: #00000020;
+        border-radius: 0.5rem;
+        min-width: 15rem;
+        padding-left: 0.5rem;
+        &:hover,
+        &:focus {
+            background-color: #00000010;
+            cursor: inherit;
+            transition: background-color 300ms ease-in;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+}
